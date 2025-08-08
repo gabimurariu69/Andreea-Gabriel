@@ -1,9 +1,9 @@
 body { background: #ececec; }
 
-/* Container principal pentru invitație (închis: 13x18cm, deschis: 25.6x18cm) */
+/* Container principal pentru invitație (închis: 15x20cm, deschis: 30x20cm) */
 .window-invite {
-  width: 325px;   /* 13cm x 25px/cm ≈ 325px */
-  height: 450px;  /* 18cm x 25px/cm ≈ 450px */
+  width: 400px;   /* Slightly larger width */
+  height: 540px;  /* Slightly larger height */
   margin: 40px auto 16px auto;
   position: relative;
   display: flex;
@@ -17,18 +17,18 @@ body { background: #ececec; }
   transition: width 1.2s cubic-bezier(.42,0,.58,1), height 0.8s cubic-bezier(.42,0,.58,1);
 }
 
-/* Deschis: mărim containerul la 25.6x18cm (≈ 640px x 450px) */
+/* Deschis: mărim containerul la 30x20cm (≈ 800px x 540px) */
 .window-invite.open {
-  width: 640px;   /* 25.6cm x 25px/cm ≈ 640px */
-  height: 450px;  /* 18cm x 25px/cm ≈ 450px */
+  width: 800px;   /* Slightly larger width when open */
+  height: 540px;  /* Slightly larger height when open */
 }
 
 /* Aripi laterale */
 .wing {
   position: absolute;
   top: 0;
-  width: 50%;
-  height: 100%;
+  width: 50%; /* Fiecare aripă ocupă jumătate din container */
+  height: 100%; /* Înălțimea aripilor este egală cu containerul */
   display: flex;
   align-items: center;
   justify-content: center;

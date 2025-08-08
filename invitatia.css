@@ -1,0 +1,137 @@
+body { background: #ececec; }
+
+/* Container principal pentru invitație (închis: 13x18cm, deschis: 25.6x18cm) */
+.window-invite {
+  width: 325px;   /* 13cm x 25px/cm ≈ 325px */
+  height: 450px;  /* 18cm x 25px/cm ≈ 450px */
+  margin: 40px auto 16px auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 32px #bbb;
+  overflow: hidden;
+  cursor: pointer;
+  background: #fff;
+  perspective: 3000px;
+  transition: width 1.2s cubic-bezier(.42,0,.58,1), height 0.8s cubic-bezier(.42,0,.58,1);
+}
+
+/* Deschis: mărim containerul la 25.6x18cm (≈ 640px x 450px) */
+.window-invite.open {
+  width: 640px;   /* 25.6cm x 25px/cm ≈ 640px */
+  height: 450px;  /* 18cm x 25px/cm ≈ 450px */
+}
+
+/* Aripi laterale */
+.wing {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: transform 1.2s cubic-bezier(.42,0,.58,1);
+  overflow: hidden;
+  backface-visibility: hidden;
+  background: transparent;
+}
+.wing-left {
+  left: 0;
+  border-right: 1px solid #eee;
+  transform-origin: left center;
+  transform: rotateY(0deg);
+}
+.wing-right {
+  right: 0;
+  border-left: 1px solid #eee;
+  transform-origin: right center;
+  transform: rotateY(0deg);
+}
+
+/* Fața și spatele aripilor */
+.wing-front, .wing-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.6s cubic-bezier(.42,0,.58,1) 0.6s;
+}
+.wing-front { z-index: 1; opacity: 1; }
+.wing-back {
+  transform: rotateY(180deg);
+  z-index: 2;
+  opacity: 0;
+}
+
+/* Pozele aripilor */
+.wing-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0 2px 14px #eee;
+  background: #fff;
+  transition: width 0.8s cubic-bezier(.42,0,.58,1), height 0.8s cubic-bezier(.42,0,.58,1);
+}
+.wing-img-right {
+  width: 100%;
+  height: 101%;
+  object-fit: cover;
+  transition: width 0.8s cubic-bezier(.42,0,.58,1), height 0.8s cubic-bezier(.42,0,.58,1);
+}
+
+/* Imaginea centrală */
+.center-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  opacity: 0; /* Ascundem imaginea centrală inițial */
+  transition: opacity 0.6s ease-in-out;
+}
+/* Imaginea centrală */
+.center-img img {
+  width: auto; /* Lățimea se ajustează automat */
+  height: 100%; /* Înălțimea ocupă întreg containerul */
+  object-fit: contain; /* Asigură afișarea completă a imaginii fără tăiere */
+}
+
+/* Animația pentru aripile laterale */
+.window-invite.open .wing-left {
+  transform: rotateY(-180deg); /* Aripa stângă se rotește spre stânga */
+}
+
+.window-invite.open .wing-right {
+  transform: rotateY(180deg); /* Aripa dreaptă se rotește spre dreapta */
+}
+
+/* Dezvăluirea imaginii centrale */
+.window-invite.open .center-img {
+  opacity: 1; /* Imaginea centrală devine vizibilă */
+  transition: opacity 1s ease-in-out 0.6s;
+}
+
+/* Stilizare mesaj click */
+.instr {
+  position: absolute; /* Poziționare absolută */
+  bottom: 20px; /* Poziționat deasupra marginii de jos */
+  left: 50%; /* Centrare orizontală */
+  transform: translateX(-50%); /* Ajustare pentru centrare perfectă */
+  text-align: center;
+  font-size: 1rem; /* Dimensiune mai mică */
+  color: #555; /* Culoare subtilă */
+  font-family: 'Cursive', 'Arial', sans-serif; /* Font cursiv */
+  font-style: italic; /* Stil cursiv */
+  z-index: 10; /* Asigură că mesajul este vizibil */
+  pointer-events: none; /* Previne interacțiunea cu mesajul */
+}
